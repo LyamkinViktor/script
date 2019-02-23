@@ -3,22 +3,26 @@
 /**
  * Данные от пользователя
  */
-$name = $_POST['name'];
+$name = $_POST['Name'];
 
-$email = $_POST['email'];;
+$email = $_POST['Email'];
 
-$phone = $_POST['phone'];;
+$phone = $_POST['Phone'];
 
-$tickets = 42;
+$tickets = $_POST['Number'];
 
-/**Добавляем сделку*/
-$queryUrl = 'https://b24-q5twwr.bitrix24.ru/rest/1/v4oc1tc9opd8gnri/crm.deal.add.json';
+
+/**
+ * Добавляем сделку
+ */
+$queryUrl = 'https://b24-jce50c.bitrix24.ru/rest/1/7twwtj56r6p1vp53/crm.deal.add.json';
+
 
 $queryData = [
     'fields' => [
         'TITLE' => $name,
         'CATEGORY_ID' => '1',
-        'UF_CRM_1550570607047' => $tickets,
+        'UF_CRM_1550868159539' => $tickets,
     ],
 ];
 
@@ -47,7 +51,7 @@ var_dump($result);
 
 
 /**Добавляем контакт*/
-$queryUrl = 'https://b24-q5twwr.bitrix24.ru/rest/1/v4oc1tc9opd8gnri/crm.contact.add.json';
+$queryUrl = 'https://b24-jce50c.bitrix24.ru/rest/1/7twwtj56r6p1vp53/crm.contact.add.json';
 $queryData = [
     'fields' => [
         'NAME' => $name,
@@ -84,7 +88,7 @@ $contactId = $result["result"];
 var_dump($result);
 
 /**Добавляем контакт к указанной сделке*/
-$queryUrl = 'https://b24-q5twwr.bitrix24.ru/rest/1/v4oc1tc9opd8gnri/crm.deal.contact.add.json';
+$queryUrl = 'https://b24-jce50c.bitrix24.ru/rest/1/7twwtj56r6p1vp53/crm.deal.contact.add.json';
 $queryData = [
     'id' => $dealID,
     'fields' => [],
@@ -112,5 +116,3 @@ curl_close($curl);
 
 $result = json_decode($result, true);
 var_dump($result);
-
-
